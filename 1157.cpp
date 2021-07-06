@@ -1,36 +1,34 @@
-
 #include <iostream>
-#include <string>
+#include <map>
 using namespace std;
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	string alphabet= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	int cnt[26] = {0};
-	string input;
-	cin >> input;
-	for(int i = 0 ; i < input.size();i++){
-		for(int j = 0 ; j < 26 ; j++){
-			if(input[i] == alphabet[j] || input[i]-32 == alphabet[j])
-				cnt[j]++;
-		}
-	}
-	int max = 0,tmp;
-	bool same;
-	for(int i = 0 ; i < 26 ; i++){
-		if(cnt[i] > max){
-			max = cnt[i];
-			tmp = i;
-			same = false;
-		}
-		else if(cnt[i] == max){
-			same = true;
-		}
-	}
-	if(same)
-		cout << '?' << '\n';
-	else
-		cout << alphabet[tmp] << '\n';
-	return 0;
+    int maxN = 0;
+    char maxL;
+    bool check;
+    map <char,int> alphabet;
+    for(char i = 'A' ; i <= 'Z' ; i++)
+        alphabet.insert({i,0});
+    string word;
+    cin >> word;
+    for(int i = 0 ; i < word.size() ; i++){
+        if(word[i] >= 'a' )
+            word[i] -= 32;
+       ++alphabet[word[i]];
+    }
+    for (std::map<char,int>::iterator it=alphabet.begin(); it!=alphabet.end(); ++it){
+        if(it->second > maxN){
+            maxN = it->second;
+            maxL = it->first;
+            check = false;
+        }
+        else if (it->second == maxN){
+            check = true;
+        }
+    }
+    if(check)  
+        cout << '?';
+    else
+        cout << maxL;
+    return 0;
 }
