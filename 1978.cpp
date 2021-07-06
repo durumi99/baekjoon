@@ -12,7 +12,7 @@ int main() {
     for(int i = 2 ; i <= 1000 ; i++){
     	if(a[i] == 0)
     		continue;
-    	for(int j = 2*i; j <= 1000 ; j += i)
+    	for(int j = i*i; j <= 1000 ; j += i)
     		a[j] = 0;
     }
 	int n,tmp,cnt = 0;
