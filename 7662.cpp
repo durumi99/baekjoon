@@ -1,61 +1,43 @@
 #include <iostream>
-#include <queue>
-#include <algorithm>
-#include <vector>
-#include <functional>
+#include <map>
 using namespace std;
-int k;
-bool visited[1000001];
 
 int main() {
-    ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	int t;
-	cin >> t;
-	
-	for(int j = 0 ; j < t ; j++){
-		cin >> k;
-		priority_queue< pair<int,int> > maxH;
-		priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minH;
-		
-		for(int i = 0 ; i < k ; i++){
-			char tmpC;
-			int tmpN;
-			cin >> tmpC >> tmpN;
-			
-			if(tmpC == 'I'){
-				maxH.push({tmpN,i});
-				minH.push({tmpN,i});
-				visited[i] = true;
-			}
-			else{
-				if(tmpN == 1){ 
-					while(!maxH.empty() && !visited[maxH.top().second])
-						maxH.pop();
-					if(!maxH.empty()){
-						visited[maxH.top().second] = false;
-            			maxH.pop();
-					}
-				}
-				else{ 
-					while(!minH.empty() && !visited[minH.top().second])
-						minH.pop();
-					if(!minH.empty()){
-						visited[minH.top().second] = false;
-            			minH.pop();
-					}
-				}
-			}
-		}
-		while(!maxH.empty() && !visited[maxH.top().second])
-			maxH.pop();
-		while(!minH.empty() && !visited[minH.top().second])
-			minH.pop();	
-			
-		if(maxH.empty() && minH.empty())
-			cout << "EMPTY" << '\n';
-		else
-			cout << maxH.top().first << ' ' << minH.top().first<< '\n';
-	}
-	return 0;
+    map <int,int>::iterator it;
+    int T,k; cin >> T;
+    for(int tc = 0 ; tc < T; tc++){
+        map <int,int> map;
+        cin >> k;
+        for(int i = 0 ; i < k; i++){
+            char input; cin >> input;
+            int tmp; cin >> tmp;
+            if(input == 'D' && !map.empty()){
+                if(tmp == -1){
+                    if(map.begin()->second == 1)
+                        map.erase(map.begin());
+                    else
+                        map.begin()->second--;
+                }
+                else if(tmp == 1){
+                    if((--map.end())->second == 1)
+                        map.erase((--map.end()));
+                    else
+                        (--map.end())->second--;
+                }
+            }
+            else if(input == 'I'){
+                if(map.find(tmp) == map.end())
+                    map.insert({tmp,1});
+                else
+                    map[tmp]++;
+            }
+        }
+        if(map.empty()){
+            cout << "EMPTY\n";
+        }
+        else {
+            cout << (--map.end())->first << ' ' << map.begin()->first <<'\n';
+        }
+    }
+    return 0;
 }
