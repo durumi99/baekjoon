@@ -1,26 +1,28 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
+
+#define INF 987654321
+
 int n;
-int graph[100][100];
+int arr[101][101];
 void floyd(){
-	for(int i = 0 ; i < n ; i++)
-		for(int j = 0 ; j < n ; j++)
-			for(int k = 0 ; k < n ; k++)
-				if(graph[j][k] == 0 && graph[j][i] == 1 && graph[i][k] == 1)
-					graph[j][k] = 1;
+     for (int i = 1; i <= n; i++)             
+        for (int j = 1; j <= n; j++)         
+            for (int k = 1; k <= n; k++)     
+                if (arr[j][i] != 0 && arr[i][k] != 0)        
+                    arr[j][k] = 1;
 }
 int main() {
-	cin >> n;
-	for(int i = 0 ; i < n ; i++){
-		for(int j = 0 ; j < n ; j++)
-			cin >> graph[i][j];
-	}
-
-	floyd();
-	for(int i = 0 ; i < n ; i++){
-		for(int j = 0 ; j < n ; j++)
-			cout << graph[i][j] << ' ';
-		cout << '\n';
-	}
-	return 0;
+    cin >> n;
+    for(int i = 1 ; i <= n ; i++)
+        for(int j = 1 ; j <= n ; j++)
+            cin >> arr[i][j];
+    floyd();
+    for(int i = 1 ; i <= n ; i++){
+        for(int j = 1 ; j <= n ; j++)
+            cout << arr[i][j] << ' ';
+        cout <<'\n';
+    }
+    return 0;
 }
