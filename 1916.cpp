@@ -7,8 +7,7 @@
 using namespace std;
  
 vector<pair<int,int>> g[MAX]; // next,cost
-priority_queue<pair<int,int>> pq; //cost,next
-vector<int> dist(MAX,INF);
+v[]
 int src,dst;
  
 void dijkstra(){
