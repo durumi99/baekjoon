@@ -3,14 +3,13 @@
 #include <queue>
 
 using namespace std;
-// class marble {
-//     int redX,redY,blueX,blueY;
-// };
+
 int n,m;
 char map[11][11];
 int holeX,holeY,redX,redY,blueX,blueY;
 int dx[4] = { 0, 0, 1, -1 };
 int dy[4] = { 1, -1, 0, 0 };
+
 void f(){
     queue < pair< pair< pair<int,int> , pair<int,int> >, int> > q;
     q.push({{{redX,redY},{blueX,blueY}},0});

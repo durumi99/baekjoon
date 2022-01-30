@@ -22,14 +22,12 @@ void f(){
             answer1 = start;
             answer2 = end;
         }
-        if(abs(arr[start+1] + arr[end]) < abs(arr[start] + arr[end-1])){
+        if( arr[start] + arr[end] < 0){
             start++;
         }
         else{
             end--;
         }
-        if(start == end)
-            break;
     }
     cout << arr[answer1] << ' ' << arr[answer2];
 }
