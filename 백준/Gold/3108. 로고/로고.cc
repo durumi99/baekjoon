@@ -8,19 +8,14 @@ int x1[MAX], x2[MAX], y1[MAX], y2[MAX];
 
 int root[MAX];
 
-bool inr(int a, int b, int c, int d) {
-    return a < c && d < b;
-}
-
 bool check(int i, int j) {
 	if(x1[j] > x2[i] || y1[j] > y2[i] || x1[i] > x2[j] || y1[i] > y2[j])
 		return false;
-	// if(x1[j] > x1[i] && x2[i] > x2[j] && y1[j] > y1[i] && y2[i] > y2[j])
-	// 	return false;
-	// if(x1[i] > x1[j] && x2[j] > x2[i] && y1[i] > y1[j] && y2[j] > y2[i])
-	// 	return false;
-	if (inr(x1[i], x2[i], x1[j], x2[j]) && inr(y1[i], y2[i], y1[j], y2[j])) return false;
-    if (inr(x1[j], x2[j], x1[i], x2[i]) && inr(y1[j], y2[j], y1[i], y2[i])) return false;	
+	if(x1[j] > x1[i] && x2[i] > x2[j] && y1[j] > y1[i] && y2[i] > y2[j])
+		return false;
+	if(x1[i] > x1[j] && x2[j] > x2[i] && y1[i] > y1[j] && y2[j] > y2[i])
+		return false;
+
 	return true;	
 };
 
