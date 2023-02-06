@@ -46,14 +46,14 @@ void bfs() {
 				continue;
 				
 			string next = curStr;
-			swap(next[curY * 3 + curX], next[newY*3 + newX]);
+			swap(next[zero], next[newY*3 + newX]);
 			
 			if(s.find(next) == s.end()) {
 				s.insert(next);
 				q.push({next, curCnt+1});
 			}
 			
-			swap(next[curY * 3 + curX], next[newY*3 + newX]);
+			swap(next[zero], next[newY*3 + newX]);
 		}
 	}
 }
@@ -63,8 +63,7 @@ int main() {
 			cin >> map[i][j];
 			start += map[i][j] +'0';
 		}
-		
-	// cout << start << '\n';
+    
 	bfs();
 
 	cout << cnt;
