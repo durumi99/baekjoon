@@ -40,11 +40,6 @@ void getMin() {
             minTwoSum = min(minTwoSum, dice[i] + dice[j]);    
         }
     }
-    
-    // cout << minSum << '\n';
-    // cout << minTwoSum << '\n';
-    // cout << minThreeSum << '\n';
-    
 }
 int main() {
     cin >> n;
@@ -57,15 +52,12 @@ int main() {
 
     unsigned long long surfaceCnt = pow(n, 2) * 5;
     long long ans = 0;
-    // cout << surfaceCnt << ' ' << ans << '\n';
     
     ans += 4 * minThreeSum;
-    surfaceCnt -= min(surfaceCnt, (unsigned long long)4 * 3);
-    // cout << surfaceCnt << ' ' << ans << '\n';
+    surfaceCnt -= 12;
     
     ans += 4 * (2*n-3) * minTwoSum;
-    surfaceCnt -= min(surfaceCnt, (unsigned long long)(4 * (2*n-3) * 2));
-    // cout << surfaceCnt << ' ' << ans << '\n';
+    surfaceCnt -= 4 * (2*n-3) * 2;
     
     ans += surfaceCnt * minEye;
     
