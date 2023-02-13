@@ -8,7 +8,7 @@ int n, m, t, s, g, h;
 int result1[MAX], result2[MAX];
 int ghDist, cr1, cr2;
 vector < pair<int, int> > v[MAX];
-vector <int> ans;
+vector <int> ans, tt;
 
 void dijkstra(int start, int* visited) {
     queue <int> q;
@@ -35,11 +35,6 @@ void dijkstra(int start, int* visited) {
             q.push(nextL);
         }
     }
-    
- //   for(int i = 1 ; i <= n ; i++) {
- //   	cout << visited[i] << ' ';
- //   }
-	// cout << '\n';	
 }
 int main() {
     ios_base::sync_with_stdio(false);
@@ -48,7 +43,7 @@ int main() {
     
     int TC; cin >> TC;
     while(TC--) {
-        // tt.clear();
+        tt.clear();
         ans.clear();
 		memset(result1, 0, sizeof(result1));
 		memset(result2, 0, sizeof(result2));
@@ -67,11 +62,11 @@ int main() {
 				ghDist = d; 
         }
         
-        // for(int i = 0 ; i < t ; i++){
-        //     int tmp; cin >> tmp;
-        //     tt.push_back(tmp);
-        // }
-        // sort(tt.begin(), tt.end());
+        for(int i = 0 ; i < t ; i++){
+            int tmp; cin >> tmp;
+            tt.push_back(tmp);
+        }
+        sort(tt.begin(), tt.end());
         
         dijkstra(s, result1);
         
@@ -86,15 +81,10 @@ int main() {
         dijkstra(cr2, result2);
         
         for(int i = 0 ; i < t ; i++) {
-            int target; cin >> target;
-            
+            int target = tt[i];
             if(result1[target] == result1[cr1] + ghDist + result2[target])
-        		ans.push_back(target);
+        		cout << target << ' ';
         }
-        sort(ans.begin(), ans.end()); // 정답 오름차순 정렬
-
-		for (int i = 0; i < ans.size(); i++)
-			cout << ans[i] << " ";
 		cout << '\n';
     }
     return 0;
