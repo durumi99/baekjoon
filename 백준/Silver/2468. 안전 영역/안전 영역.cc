@@ -53,18 +53,10 @@ void solve() {
     			visited[i][j] = 1;
     			cnt++;
     			bfs(i, j);
-    			// cout << '\n';
     		}
     	}
     }
-	// for(int i = 0 ; i < N ; i++) { 
- //   	for(int j = 0 ; j < N ; j++) { 
- //   		cout << visited[i][j] << ' ';
- //   	}
- //   	cout << '\n';
-	// }
-	// cout << cnt << '\n';
-	
+    
     ans = max(ans, cnt);
 }
 int main() {
