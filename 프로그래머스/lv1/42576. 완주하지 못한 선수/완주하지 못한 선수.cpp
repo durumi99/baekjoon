@@ -12,8 +12,10 @@ string solution(vector<string> participant, vector<string> completion) {
         m[ele]--;
     }
     for(auto it = m.begin() ; it != m.end(); it++) {
-        if(it->second)
+        if(it->second) {
             answer += it->first;
+            break;
+        }
     }
     return answer;
 }
