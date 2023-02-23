@@ -2,12 +2,10 @@
 
 using namespace std;
 
-set <int> s;
 int solution(vector<int> nums)
 {
     int answer = 0;
-    for(int num : nums)
-        s.insert(num);
+    set <int> s(nums.begin(), nums.end());
     answer = min(nums.size()/2, s.size());
     return answer;
 }
