@@ -9,7 +9,6 @@ string solution(string number, int k) {
     int startIdx = 0;
     
     while(k && startIdx < number.size()) {
-        // cout << "number : " << number << ' ' << "k : " << k << ' ';
         int maxIdx = startIdx;
         char maxChar = number[startIdx];
         int minLen = min((int)number.length(), startIdx+k+1);
@@ -20,8 +19,7 @@ string solution(string number, int k) {
                 maxChar = number[i];
             }
         }
-        // cout << "startIdx : " << startIdx << ' ' << "maxIdx : " << maxIdx << ' ';
-        // cout << "maxChar : " << maxChar << '\n';
+        
         if(maxIdx == startIdx){
             startIdx++;
         } else {
@@ -31,7 +29,6 @@ string solution(string number, int k) {
     }
     
     if(original == number) {
-        // cout << number << '\n';
         number.erase(number.size()-kk, kk);
     }
     answer += number;
