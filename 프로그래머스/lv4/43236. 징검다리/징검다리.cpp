@@ -25,7 +25,6 @@ int solution(int distance, vector<int> rocks, int n) {
             cnt++;
         
         if(cnt <= n) {
-            // answer = max(mid, answer);
             answer = mid;
             left = mid + 1;
         } else {
