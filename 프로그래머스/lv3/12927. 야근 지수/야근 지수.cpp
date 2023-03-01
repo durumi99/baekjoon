@@ -7,11 +7,8 @@ long long solution(int n, vector<int> works) {
     sort(works.begin(), works.end(), greater<>());
     int maxV = works[0];
     int cur = 0;
+    
     while(n--) {
-        // for(auto work : works) {
-        //     cout << work << ' ';
-        // }
-        // cout << '\n';
         if(works[cur] == 0)
             break;
         
@@ -19,14 +16,11 @@ long long solution(int n, vector<int> works) {
         if(cur == works.size()-1 || works[cur+1] <= works[0]) {
             cur = 0;
         } else {
-            if(works[cur+1] > works[0]) {
-                cur++;
-            }
+            cur++;
         }
     }
     
     for(auto work : works) {
-        // cout << work * work << ' ';
         answer += work * work;
     }
     return answer;
