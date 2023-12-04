@@ -1,10 +1,10 @@
 # [level 3] 표 병합 - 150366 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/150366#) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/150366?language=javascript) 
 
 ### 성능 요약
 
-메모리: 4.01 MB, 시간: 5.12 ms
+메모리: 37.7 MB, 시간: 13.13 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 11월 4일 18:56:23
+2023년 12월 1일 23:3:47
 
 ### 문제 설명
 
