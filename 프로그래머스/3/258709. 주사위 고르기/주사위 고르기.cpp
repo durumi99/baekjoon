@@ -63,14 +63,7 @@ vector<int> solution(vector<vector<int>> _dice) {
         calSum(selectedByA, 0, 0, 0);
         calSum(selectedByB, 0, 0, 1);
         
-        // cout << A.size() << '\n';
-        // cout << B.size() << '\n';
         int winCnt = calWinCnt();
-        for(auto el : selectedByAIdx) {
-            cout << el << ' ';
-        }
-        cout << ' ';
-        cout << winCnt << '\n';
         if(winCnt > maxWinCnt) {
             maxWinCnt = winCnt;
             for(int i = 0 ; i < selectedByAIdx.size() ; i++) {
