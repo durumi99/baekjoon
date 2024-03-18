@@ -1,11 +1,13 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-vector <vector<int>> vertices(1000000);
-vector <int> inVertexCnt(1000000);
+vector <vector<int>> vertices;
+vector <int> inVertexCnt;
+vector <int> visited;
+
 vector <int> answer;
 int graphCnt[3] = {0, }; // 0 : donut, 1 : stick, 2: eight;
-vector <int> visited(1000000);
+
 
 void dfs(int currentVertex) {
     if(vertices[currentVertex].size() == 0) { // 연결된 다음 정점이 없는 경우
@@ -25,11 +27,21 @@ void dfs(int currentVertex) {
     return;
 }
 vector<int> solution(vector<vector<int>> edges) {
-    int len = edges.size();
+    int len = 0;
     int startVertex;
     
-    // visited.resize(len + 1);
-    // vertices.resize(len + 1);
+    for(auto edge : edges) {
+        int a = edge[0];
+        int b = edge[1];
+        len = max(a, len);
+        len = max(b, len);
+    }
+    len++;
+    
+    visited.resize(len);
+    vertices.resize(len);
+    inVertexCnt.resize(len);
+    
     
     for(auto edge : edges) {
         int a = edge[0];
