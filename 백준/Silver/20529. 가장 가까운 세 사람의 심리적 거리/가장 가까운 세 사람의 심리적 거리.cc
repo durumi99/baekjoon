@@ -1,53 +1,54 @@
-/**
- * problem : https://www.acmicpc.net/problem/20529
- * time complexity : O(N^3) // N = 16*2 
- * algorithm : 완전탐색
- */
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-
-#define MBTI_CNT 16
-
+#include <bits/stdc++.h>
+#define INF 1e9
 using namespace std;
 
 int getDist(string a, string b, string c) {
-	int dist = 0;
-	for (int i = 0; i < a.size(); i++) {
-		dist += (a[i] != b[i]) + (b[i] != c[i]) + (c[i] != a[i]);
-	}
-	return dist;
-}
-
-int solve(int N, vector<string> mbtis) {
-	if (N > MBTI_CNT * 2)
-		return 0;
-
-	int answer = 1e9;
-	for (int i = 0; i < N; i++) {
-		for (int j = i + 1; j < N; j++) {
-			for (int k = j + 1; k < N; k++) {
-				answer = min(answer, getDist(mbtis[i], mbtis[j], mbtis[k]));
-			}
-		}
-	}
-	return answer;
+    int dist = 0;
+    
+    for(int idx = 0 ; idx < 4 ; idx++) {
+        if(a[idx] != b[idx]) {
+            dist++;
+        }
+        
+        if(a[idx] != c[idx]) {
+            dist++;
+        }
+        
+        if(b[idx] != c[idx]) {
+            dist++;
+        }
+    }
+    return dist;
 }
 
 int main() {
-	int T;
-	cin >> T;
-	while (T--) {
-		int N;
-		cin >> N;
-		
-		vector<string> mbtis(N);
-		for (int i = 0; i < N; i++) 
-			cin >> mbtis[i];
-
-		printf("%d\n", solve(N, mbtis));
-	}
-	return 0;
+    int T; cin >> T;
+    
+    while(T--) {
+        int n; cin >> n;
+        
+        
+        vector <string> MBTI(n);
+        for (int i = 0 ; i < n ; i++) {
+            cin >> MBTI[i];
+        }
+        
+        if(n >= 33) {
+            cout << "0\n";
+            continue;
+        }
+        
+        int dist = INF;
+        
+        for (int i = 0 ; i < n ; i++) {
+            for (int j = i + 1 ; j < n ; j++) {
+                for (int k = j + 1 ; k < n ; k++) {
+                    dist = min(dist, getDist(MBTI[i], MBTI[j], MBTI[k]));
+                }
+            }
+        }
+        
+        cout << dist << '\n';
+    }
+    return 0;
 }
