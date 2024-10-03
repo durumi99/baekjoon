@@ -1,24 +1,54 @@
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
 function solution(topping) {
-	let count = 0;
-	const leftMap = new Map();
-	const rightMap = new Map();
-	for (let i = 0; i < topping.length; i++) {
-		rightMap.set(
-			topping[i],
-			rightMap.get(topping[i]) ? rightMap.get(topping[i]) + 1 : 1
-		);
-	}
-	for (let i = 0; i < topping.length; i++) {
-		leftMap.set(
-			topping[i],
-			leftMap.get(topping[i]) ? leftMap.get(topping[i]) + 1 : 1
-		);
-		if (rightMap.get(topping[i]) > 1)
-			rightMap.set(topping[i], rightMap.get(topping[i]) - 1);
-		else if (rightMap.get(topping[i]) === 1) rightMap.delete(topping[i]);
-		if (leftMap.size === rightMap.size) {
-			count++;
-		}
-	}
-	return count;
+    const a = new Set()
+    const b = {}
+
+    let answer = 0;
+    let check = 0
+
+    for (let i = 0; i < topping.length; i++) {        
+        if (b[topping[i]]) {
+            b[topping[i]]++
+        } else {
+            b[topping[i]] = 1
+            check++            
+        }
+    }
+
+    for (let i = 0; i < topping.length; i++) {
+        a.add(topping[i])
+        b[topping[i]]--
+
+        if (!b[topping[i]]) check--
+        if (a.size === check) answer++
+    }
+
+
+    return answer;
 }
