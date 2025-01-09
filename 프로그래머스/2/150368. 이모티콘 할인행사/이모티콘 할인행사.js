@@ -1,63 +1,58 @@
-const disCountRates = [10, 20, 30, 40]
-let userLen
-let emoticonLen
 let users;
 let emoticons;
-let EPSCnt = 0;
-let emoticonSales = 0;
-let arr = []
+let discountRates = [];
+let answer = [0, 0];
+ 
+function solution(_users, _emoticons) {
+    users = _users;
+    emoticons = _emoticons;
+    dfs(0);
+    return answer;
+}
 
-function dfs() {
-    // console.log(emoticonLen)
-    // console.log(arr.length == emoticonLen)
-    if(arr.length == emoticonLen) {
-        let wholeSum = 0;
-        let eps = 0;
-        for(let user of users) {
-            let sum = 0
-            for(let i = 0 ; i < emoticonLen ; i++) {
-                if(user[0] <= arr[i]) {
-                    // console.log(emoticons[i] * (100 - arr[i]) * 0.01);
-                    sum += emoticons[i] * (100 - arr[i]) * 0.01;
-                }
-            }
-            if(sum >= user[1]) {
-                
-                eps++;
-            } else {
-                wholeSum += sum;
-            }
-        }
+function dfs(idx) {
+    if(idx === emoticons.length) {
+        const [registerAmount, revenue] = getResult();
         
-        
-        if(eps > EPSCnt) {
-            EPSCnt = eps;
-            emoticonSales = wholeSum;
-        } else if(eps == EPSCnt && wholeSum > emoticonSales) {
-            
-            EPSCnt = eps;
-            emoticonSales = wholeSum;
+        if(registerAmount > answer[0]) {
+            answer = [registerAmount, revenue];
+        } else if(registerAmount === answer[0] && revenue > answer[1]) {
+            answer = [registerAmount, revenue];
         }
         return;
     }
-    // console.log(1)
-    for(let i = 0 ; i < disCountRates.length ; i++) {
-        // console.log(value)
-        arr.push(disCountRates[i])
-        // console.log(arr)
-        dfs()
-        arr.pop()
+    
+    for(let i = 10 ; i <= 40 ; i += 10) {
+        discountRates.push(i);
+        dfs(idx + 1);
+        discountRates.pop();
     }
 }
-function solution(_users, _emoticons) {
-    users = _users
-    emoticons = _emoticons;
-    var answer = [];
-    userLen = users.length
-    emoticonLen = emoticons.length
-    // console.log(emoticonLen)
-    dfs()
-    answer.push(EPSCnt)
-    answer.push(emoticonSales)
-    return answer;
+
+function getResult() {
+    let curRegisterAmount = 0;
+    let curRevenue = 0;
+    
+    users.forEach((user) => {
+        const percentage = user[0];
+        const limitPrice = user[1];
+        
+        const sum = emoticons.reduce((acc, price, idx) => {
+            const curDiscountRates = discountRates[idx];
+            
+            if(curDiscountRates >= percentage) {
+                acc += price * (100 - curDiscountRates) / 100;
+            }
+            
+            return acc;
+        }, 0);
+        
+        if (sum >= limitPrice) {
+            curRegisterAmount++;
+        } else {
+            curRevenue += sum;
+        }
+    });
+    
+    return [curRegisterAmount, curRevenue];
 }
