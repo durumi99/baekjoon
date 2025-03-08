@@ -4,7 +4,7 @@ function solution(arrayA, arrayB) {
     const canDivideAll = (arr, N) => arr.every((el) => el % N === 0);
     const canDivideNone = (arr, N) => arr.every((el) => el % N !== 0);
 
-    let minA = Math.min(arrayA.sort()[0]);
+    let minA = (arrayA.sort()[0]);
     let minB = Math.min(arrayB.sort()[0]);
     let maxN = Math.max(minA, minB);
 
