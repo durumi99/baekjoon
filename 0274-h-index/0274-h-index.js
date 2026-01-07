@@ -3,8 +3,7 @@
  * @return {number}
  */
 var hIndex = function(citations) {
-    citations.sort((a, b) => b - a);
-    let answer = citations[0];
+    let answer = Math.max(...citations);
 
     while(answer) {
         if(answer <= getCount(answer, citations)) {
@@ -22,7 +21,6 @@ function getCount(n, citations) {
         if(el >= n) {
             acc++;
         }
-        console.log(acc, el, n)
         return acc;
     }, 0);
 }
