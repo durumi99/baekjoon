@@ -2,10 +2,7 @@
  * @param {number[]} height
  * @return {number}
  */
-var trap = function(height) {
-    const rain = new Array(height.length).fill(0);
-
-    const [maxHeight, maxIdx] = height.reduce((acc, el, idx) => {
+var trap = function(height) {    const [maxHeight, maxIdx] = height.reduce((acc, el, idx) => {
         if(acc[0] < el) {
             acc = [el, idx];
         }
