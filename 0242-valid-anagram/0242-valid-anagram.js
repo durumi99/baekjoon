@@ -14,7 +14,6 @@ var isAnagram = function(s, t) {
 
         arr[char1]++;
         arr[char2]--;
-        console.log(char1, char2, arr[char1], arr[char2])
     }
     console.log(arr['a'.charCodeAt()])
     console.log(arr['b'.charCodeAt()])
