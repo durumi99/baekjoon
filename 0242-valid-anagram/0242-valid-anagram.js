@@ -4,19 +4,18 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    const arr = new Int16Array(128);
+    const arr = new Int16Array(26);
+    const charCodeA = 'a'.charCodeAt();
     if(s.length !== t.length) {
         return false;
     }
     for(let i = 0 ; i < s.length ; i++) {
-        const char1 = s.charCodeAt(i);
-        const char2 = t.charCodeAt(i);
+        const char1 = s.charCodeAt(i) - charCodeA;
+        const char2 = t.charCodeAt(i) - charCodeA;
 
         arr[char1]++;
         arr[char2]--;
     }
-    console.log(arr['a'.charCodeAt()])
-    console.log(arr['b'.charCodeAt()])
     
     return arr.every(el => el === 0);
 };
