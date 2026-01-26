@@ -3,14 +3,14 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    const map = new Map();
+    const map = {};
 
     strs.forEach((str) => {
         const sortedStr = [...str].sort().join('');
-        const tmp = map.get(sortedStr) || [];
+        const tmp = map[sortedStr] || [];
         tmp.push(str);
-        map.set(sortedStr, tmp);
+        map[sortedStr] = tmp;
     });
 
-    return [...map.values()].sort((a, b) => a.length - b.length);
+    return Object.values(map).sort((a, b) => a.length - b.length);
 };
