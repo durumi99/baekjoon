@@ -3,9 +3,6 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
-    // if(intervals.length === 1) {
-    //     return intervals;
-    // }
     intervals.sort((a, b) => {
         if(a[0] === b[0]) {
             return a[1] - b[1];
@@ -22,10 +19,6 @@ var merge = function(intervals) {
             answer.push([left, right]);
             [left, right] = intervals[i];
         }
-        
-        // if(i === intervals.length - 1) {
-        //     answer.push([left, right]);          
-        // }
     }
     answer.push([left, right]); 
     return answer;
