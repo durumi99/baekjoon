@@ -9,29 +9,14 @@ var isValid = function(s) {
 
     for(let i = 0 ; i < s.length ; i++) {
         const cur = s[i];
+        const top = stack.at(-1);
+        
         if(stack.length === 0 || opener.includes(cur)) {
             stack.push(cur);
+        } else if (opener.indexOf(top) === closer.indexOf(cur)) {
+            stack.pop();
         } else {
-            const top = stack.at(-1);
-            if(top === '('){
-                if(cur === ')') {
-                    stack.pop();
-                } else {
-                    return false;
-                } 
-            } else if(top === '{') {
-                if(cur === '}') {
-                    stack.pop();
-                } else {
-                    return false;
-                } 
-            } else if(top === '[') {
-                if(cur === ']') {
-                    stack.pop();
-                } else  {
-                    return false;
-                } 
-            } 
+            return false;
         }
     }
 
