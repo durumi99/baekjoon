@@ -7,7 +7,7 @@ var evalRPN = function(tokens) {
 
     for(const token of tokens) {
         if(!isNaN(token)) {
-            numStack.push(~~token);
+            numStack.push(Number(token);
             continue;
         } 
 
@@ -21,7 +21,7 @@ var evalRPN = function(tokens) {
         } else if(token === '*') {
             numStack.push(left * right);
         } else if(token === '/') {
-            numStack.push(~~(left / right));
+            numStack.push(Math.trunc(left / right));
         }
     }
 
