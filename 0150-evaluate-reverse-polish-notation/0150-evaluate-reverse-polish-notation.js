@@ -7,9 +7,10 @@ var evalRPN = function(tokens) {
 
     for(const token of tokens) {
         if(!isNaN(token)) {
-            numStack.push(Number(token));
+            numStack.push(~~token);
             continue;
         } 
+
         const right = numStack.pop();
         const left = numStack.pop();
 
