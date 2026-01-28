@@ -4,7 +4,6 @@
  */
 var evalRPN = function(tokens) {
     const numStack = [];
-    const opStack = []; 
 
     for(const token of tokens) {
         if(!isNaN(token)) {
