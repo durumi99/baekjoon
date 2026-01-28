@@ -13,7 +13,7 @@ var calculate = function(s) {
             continue;
         }
 
-        if(!isNaN(c)){
+        if(c >= "0" && c <= "9"){
             num = num * 10 + Number(c);
         } else if(c === '+') {
             res += sign * num;
