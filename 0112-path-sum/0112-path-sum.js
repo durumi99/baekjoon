@@ -13,23 +13,13 @@
  */
 var hasPathSum = function(root, targetSum) {
     if(!root) return false;
-
     const traversal = (cur, sum)=>{
-        const left = cur?.left;
-        const right = cur?.right;
-        
-        if(!left && !right) {
+        if(!cur) return false;
+        const isLeaf = !cur.left && !cur.right; 
+        if(isLeaf) {
             return targetSum === sum + cur.val;
         }
-        if(left && right) {
-            return traversal(cur?.left, sum + cur.val) || traversal(cur?.right, sum + cur.val);
-        }
-        if(left) {
-            return traversal(cur.left, sum + cur.val);
-        }
-        if(right) {
-            return traversal(cur.right, sum + cur.val);
-        }
+        return traversal(cur?.left, sum + cur.val) || traversal(cur?.right, sum + cur.val);
     }
 
     return traversal(root, 0);
