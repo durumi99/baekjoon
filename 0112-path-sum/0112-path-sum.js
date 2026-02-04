@@ -17,7 +17,7 @@ var hasPathSum = function(root, targetSum) {
     const traversal = (cur, sum)=>{
         const left = cur?.left;
         const right = cur?.right;
-
+        
         if(!left && !right) {
             return targetSum === sum + cur.val;
         }
