@@ -14,15 +14,11 @@ var maxPathSum = function(root) {
     let answer = -Infinity;
 
     const traversal = (cur) => {
-        answer = Math.max(cur.val, answer);
-
-        const left = cur?.left;
-        const right = cur?.right;
-        const leftSum = left ? Math.max(traversal(cur.left), 0) : 0;
-        const rightSum = right ? Math.max(traversal(cur.right), 0) : 0;
+        const leftSum = cur?.left ? Math.max(traversal(cur.left), 0) : 0;
+        const rightSum = cur?.right ? Math.max(traversal(cur.right), 0) : 0;
         const curSum = cur.val + leftSum + rightSum;
 
-        answer = Math.max(curSum, answer);
+        answer = Math.max(cur.val, curSum,  answer);
         return Math.max(leftSum, rightSum) + cur.val;
     }
 
