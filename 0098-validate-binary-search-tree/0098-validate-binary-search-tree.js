@@ -18,7 +18,6 @@ var isValidBST = function(root) {
         if(!cur) return;
         if(!answer) return;
         if(cur.left) dfs(cur.left);
-        console.log(cur.val)
         if(arr.length === 0 || cur.val > arr.at(-1)) arr.push(cur.val);
         else answer = false;
         if(cur.right) dfs(cur.right);
